@@ -91,14 +91,14 @@ struct ContentView: View {
 
             }
             .navigationBarTitle("iExpense")
-            .navigationBarItems(trailing:
-                    Button(action: {
-                        self.showingAdExpense = true
-                    }) {
-                        Image(systemName: "plus")
-                        Text("Add expense")
-                    }
-            )
+            .navigationBarItems(leading: EditButton(),
+                                trailing:
+                                    Button(action: {
+                                        self.showingAdExpense = true
+                                    }) {
+                                        Image(systemName: "plus")
+                                        Text("Add expense")
+                                    })
             .sheet(isPresented: $showingAdExpense) {
                 //show AdView here - and share expenses object
                 AddView(expenses: self.expenses)
