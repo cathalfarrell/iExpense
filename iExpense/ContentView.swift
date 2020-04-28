@@ -19,6 +19,17 @@ struct ExpenseItem: Identifiable, Codable {
     let name: String
     let type: String
     let amount: Int
+
+    //Challenge 2
+    var colorStyle: Color {
+        if amount < 10 {
+            return Color.green
+        } else if amount < 100 {
+            return Color.orange
+        } else {
+            return Color.red
+        }
+    }
 }
 
 /*
@@ -85,6 +96,7 @@ struct ContentView: View {
                         Spacer()
 
                         Text("€\(item.amount)")
+                            .background(item.colorStyle)
                     }
                 }
                 .onDelete(perform: removeItems)

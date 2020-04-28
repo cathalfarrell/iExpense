@@ -16,6 +16,7 @@ struct AddView: View {
     //Shareable Expense Data
     @ObservedObject var expenses: Expenses
 
+    @State private var showAlert = false
     @State private var name = ""
     @State private var type = "Personal"
     @State private var amount = ""
@@ -44,9 +45,18 @@ struct AddView: View {
                             self.expenses.items.append(item)
                             self.saveItems()
                             self.presentationMode.wrappedValue.dismiss()
+                        } else {
+                            self.showAlert = true
                         }
                     }
             )
+        }
+        .alert(isPresented: $showAlert){
+
+            let title = "Invalid Amount"
+            let message = "You must enter a valid expense amount in euros"
+
+            return Alert(title: Text(title), message: Text(message), dismissButton: .default(Text("OK")))
         }
     }
 
