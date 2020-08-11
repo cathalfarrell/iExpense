@@ -36,7 +36,14 @@ struct AddView: View {
 
             }
         .navigationBarTitle("Add New Expense")
-        .navigationBarItems(trailing:
+            .navigationBarItems(leading:
+
+                    Button("Cancel") {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
+
+                , trailing:
+                
                     Button("Save") {
                         if let actualAmount = Int(self.amount) {
                             let item = ExpenseItem(name: self.name,
